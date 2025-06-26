@@ -1,6 +1,8 @@
 (() => {
   const PRICE_API = 'https://api.coingecko.com/api/v3/simple/price?ids=ethereum,bitcoin,litecoin,solana&vs_currencies=usd';
   const CURRENCY_BLOCK = 'div.CurrencyInput_labelBlock__zLnW_';
+  const GAME_STATS_MULTIPLIER = 'div.MultiActionGameStats_multiplierRow__xdy_i';
+  const GAME_STATS_ROW = 'div.MultiActionGameStats_row__BkwCE';
   const prices = {}, seenTexts = new Map();
 
   const fetchPrices = async () => {
@@ -22,6 +24,11 @@
     return isNaN(val) ? null : val;
   };
 
+  const getUSDAmountFromText = text => {
+    const match = text.match(/\$([0-9,]+\.?\d*)/);
+    return match ? parseFloat(match[1].replace(/,/g, '')) : null;
+  };
+
   const convertAll = () => {
     document.querySelectorAll(CURRENCY_BLOCK).forEach(block => {
       const output = block.querySelector('p.CurrencyInput_labelRight__f1nA6');
@@ -31,6 +38,32 @@
       const val = getInputValue(input);
       if (val == null) return;
       output.textContent = (val / prices[currency]).toFixed(8) + ' ' + currency.toUpperCase();
+    });
+
+    document.querySelectorAll(GAME_STATS_MULTIPLIER).forEach(multiplierRow => {
+      const usdText = multiplierRow.querySelector('.fiat-with-tool-tip-text')?.textContent;
+      const usdAmount = getUSDAmountFromText(usdText);
+      if (!usdAmount) return;
+
+      let profitRow = multiplierRow.nextElementSibling;
+      while (profitRow && !profitRow.classList.contains('MultiActionGameStats_row__BkwCE')) {
+        profitRow = profitRow.nextElementSibling;
+      }
+      
+      if (!profitRow) return;
+
+      const profitOutput = profitRow.querySelector('.fiat-with-tool-tip-text');
+      if (!profitOutput) return;
+
+      const profitText = profitOutput.textContent;
+      const currencyMatch = profitText.match(/([A-Z]{2,5})$/);
+      if (!currencyMatch) return;
+
+      const currency = currencyMatch[1].toLowerCase();
+      if (!prices[currency]) return;
+
+      const convertedAmount = (usdAmount / prices[currency]).toFixed(8);
+      profitOutput.textContent = convertedAmount + ' ' + currency.toUpperCase();
     });
   };
 
@@ -79,8 +112,9 @@
       const inBalance = parent.closest('#balance-button');
       const inTooltip = parent.closest('.fiat-with-tool-tip-text');
       const inCashoutOverlay = parent.closest('.cashoutOverlay_textContainer__JbjkH');
+      const inCashoutButton = parent.closest('[data-testid="cash-out"]');
       
-      const newText = (inBalance || inTooltip || inCashoutOverlay)
+      const newText = (inBalance || inTooltip || inCashoutOverlay || inCashoutButton)
         ? txt.replace(/(ARS|USD)[\s\u00A0]?/g, "$")
         : txt.replace(/ARS/g, "USD");
 
