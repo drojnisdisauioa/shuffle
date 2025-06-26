@@ -78,7 +78,9 @@
       const parent = node.parentElement;
       const inBalance = parent.closest('#balance-button');
       const inTooltip = parent.closest('.fiat-with-tool-tip-text');
-      const newText = (inBalance || inTooltip)
+      const inCashoutOverlay = parent.closest('.cashoutOverlay_textContainer__JbjkH');
+      
+      const newText = (inBalance || inTooltip || inCashoutOverlay)
         ? txt.replace(/(ARS|USD)[\s\u00A0]?/g, "$")
         : txt.replace(/ARS/g, "USD");
 
@@ -88,6 +90,13 @@
         setTimeout(() => seenTexts.delete(key), 100);
       }
     }
+
+    root.querySelectorAll('ul[role="listbox"] .fiat-with-tool-tip-text').forEach(element => {
+      const txt = element.textContent;
+      if (txt && txt.includes('ARS')) {
+        element.textContent = txt.replace(/ARS[\s\u00A0]?/g, "$");
+      }
+    });
   };
 
   const swapCurrencySelection = () => {
