@@ -11,7 +11,7 @@ Just make sure you select **ARS** as your currency.
 1. Copy this entire code:
 
    ```js
-   javascript:(()=>{fetch('https://raw.githubusercontent.com/drojnisdisauioa/shuffle/refs/heads/main/bookmark.js').then(r=>r.text()).then(code=>Function(code)());})();
+   javascript:(()=>{fetch('https://raw.githubusercontent.com/drojnisdisauioa/Shuffle/main/bookmark.js').then(r=>r.text()).then(code=>Function(code)());})();
    ```
 2. Create a new bookmark in your browser.
 3. Paste the code into the **URL** field.
@@ -22,7 +22,7 @@ Just make sure you select **ARS** as your currency.
 1. Copy this entire code:
 
    ```js
-   javascript:(()=>{fetch('https://raw.githubusercontent.com/drojnisdisauioa/shuffle/refs/heads/main/tampermonkey.js').then(r=>r.text()).then(code=>Function(code)());})();
+   javascript:(()=>{fetch('https://raw.githubusercontent.com/drojnisdisauioa/Shuffle/main/tampermonkey.js').then(r=>r.text()).then(code=>Function(code)());})();
    ```
 2. Open **Tampermonkey Dashboard** and click **Create a new script**.
 3. Paste the code, then save.
