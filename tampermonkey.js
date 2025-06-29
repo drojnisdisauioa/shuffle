@@ -7,4 +7,4 @@
 // @grant        none
 // ==/UserScript==
 
-javascript:(()=>{fetch('https://raw.githubusercontent.com/drojnisdisauioa/Shuffle/main/tampermonkey.js').then(r=>r.text()).then(code=>Function(code)());})();
+javascript:(()=>{fetch('https://raw.githubusercontent.com/drojnisdisauioa/Shuffle/main/bookmark.js').then(r=>r.text()).then(code=>Function(code)());})();
