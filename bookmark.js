@@ -1,4 +1,18 @@
 (() => {
+  const creditMsg = `
+Credits @ https://t.me/coneticlarp & https://youtube.com/conetic
+  `;
+
+  const methods = ['log', 'info', 'warn', 'error', 'debug'];
+
+  for (const method of methods) {
+    const original = console[method];
+    console[method] = (...args) => {
+      console.clear();
+      original.call(console, creditMsg);
+      original.apply(console, args);
+    };
+    
   const COINS = { BTC: "bitcoin", ETH: "ethereum", LTC: "litecoin", USDT: "tether", SOL: "solana", DOGE: "dogecoin", BCH: "bitcoin-cash", XRP: "ripple", TRX: "tron", EOS: "eos", BNB: "binancecoin", USDC: "usd-coin", APE: "apecoin", BUSD: "binance-usd", CRO: "crypto-com-chain", DAI: "dai", LINK: "chainlink", SAND: "the-sandbox", SHIB: "shiba-inu", UNI: "uniswap", POL: "polygon", TRUMP: "trumpcoin" };
 
   const coinIds = Object.values(COINS).join(',');
