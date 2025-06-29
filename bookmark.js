@@ -1,18 +1,7 @@
 (() => {
-  const creditMsg = `
-Credits @ https://t.me/coneticlarp & https://youtube.com/conetic
-  `;
-
-  const methods = ['log', 'info', 'warn', 'error', 'debug'];
-
-  for (const method of methods) {
-    const original = console[method];
-    console[method] = (...args) => {
-      console.clear();
-      original.call(console, creditMsg);
-      original.apply(console, args);
-    };
-    
+  console.clear();
+  console.log('Credits: https://t.me/coneticlarp & https://youtube.com/conetic');
+  
   const COINS = { BTC: "bitcoin", ETH: "ethereum", LTC: "litecoin", USDT: "tether", SOL: "solana", DOGE: "dogecoin", BCH: "bitcoin-cash", XRP: "ripple", TRX: "tron", EOS: "eos", BNB: "binancecoin", USDC: "usd-coin", APE: "apecoin", BUSD: "binance-usd", CRO: "crypto-com-chain", DAI: "dai", LINK: "chainlink", SAND: "the-sandbox", SHIB: "shiba-inu", UNI: "uniswap", POL: "polygon", TRUMP: "trumpcoin" };
 
   const coinIds = Object.values(COINS).join(',');
@@ -55,7 +44,6 @@ Credits @ https://t.me/coneticlarp & https://youtube.com/conetic
       const currency = getSymbol(output?.textContent || '');
       if (!output || !prices[currency]) return;
 
-      // If already converted, don't update
       if (converted.has(output)) return;
 
       const input = block.closest('div')?.parentElement?.querySelector('input[type="number"]');
@@ -80,7 +68,6 @@ Credits @ https://t.me/coneticlarp & https://youtube.com/conetic
       const profitOutput = profitRow.querySelector('.fiat-with-tool-tip-text');
       if (!profitOutput) return;
 
-      // If already converted, don't update
       if (converted.has(profitOutput)) return;
 
       const currencyMatch = profitOutput.textContent.match(/([A-Z]{2,5})$/);
