@@ -8,6 +8,9 @@
 // ==/UserScript==
 
 (() => {
+  console.clear();
+  console.log('Credits: https://t.me/coneticlarp & https://youtube.com/conetic');
+  
   const COINS = { BTC: "bitcoin", ETH: "ethereum", LTC: "litecoin", USDT: "tether", SOL: "solana", DOGE: "dogecoin", BCH: "bitcoin-cash", XRP: "ripple", TRX: "tron", EOS: "eos", BNB: "binancecoin", USDC: "usd-coin", APE: "apecoin", BUSD: "binance-usd", CRO: "crypto-com-chain", DAI: "dai", LINK: "chainlink", SAND: "the-sandbox", SHIB: "shiba-inu", UNI: "uniswap", POL: "polygon", TRUMP: "trumpcoin" };
 
   const coinIds = Object.values(COINS).join(',');
@@ -50,7 +53,6 @@
       const currency = getSymbol(output?.textContent || '');
       if (!output || !prices[currency]) return;
 
-      // If already converted, don't update
       if (converted.has(output)) return;
 
       const input = block.closest('div')?.parentElement?.querySelector('input[type="number"]');
@@ -75,7 +77,6 @@
       const profitOutput = profitRow.querySelector('.fiat-with-tool-tip-text');
       if (!profitOutput) return;
 
-      // If already converted, don't update
       if (converted.has(profitOutput)) return;
 
       const currencyMatch = profitOutput.textContent.match(/([A-Z]{2,5})$/);
@@ -102,7 +103,7 @@
     let node;
     while ((node = walker.nextNode())) {
       const txt = node.nodeValue;
-      if (!/(ARS|USD)/.test(txt) || node.parentElement.closest('ul[role="listbox"]') ||
+      if (!/(ARS|USD)/.test(txt) || node.parentElement.closest('ul[role="listbox"]') || 
           node.parentElement?.dataset.userConverted) continue;
 
       const key = node.parentElement?.outerHTML + txt;
