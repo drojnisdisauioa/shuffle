@@ -17,7 +17,7 @@ Just make sure you select **ARS** as your currency.
 3. Paste the code into the **URL** field.
 4. Go to the website, click the bookmark, and you're good to go.
 
-### 🧩 Option 2: Mobile Bookmark (Quick & Easy)
+### 📲 Option 2: Mobile Bookmark (Quick & Easy)
 
 1. Copy this entire code:
 
